@@ -8,12 +8,22 @@ module.exports.profile = function(req , res){
 
 // render the sign up page 
 module.exports.signup = function(req , res){
+	if(req.isAuthenticated()){
+		return res.redirect('/users/profile');
+	}
+
+
 	return res.render('user_sign_up' , {
 		title: "Codial | Sign Up" 
 	})
 }
 // render the sign in page 
 module.exports.signin = function(req , res){
+	if(req.isAuthenticated()){
+		return res.redirect('/users/profile');
+	}
+
+
 	return res.render('user_sign_in' , {
 		title: "Codial | Sign In" 
 	})
@@ -27,7 +37,7 @@ module.exports.create = function(req , res){
 	User.findOne({
 		email: req.body.email 
 	}, function(err , user){
-		if(err){
+		if(err){   
 			console.log('error in finding user in signing up');
 			return ;  
 		}
@@ -47,7 +57,18 @@ module.exports.create = function(req , res){
 	})
 }
 
-//get the sign in data
+//sign in and create a session for the user
 module.exports.createSession = function(req , res){
-	
+	return res.redirect('/'); 
+}
+
+module.exports.destroySession = function(req ,res){
+	// req.logout() ;
+	// return res.redirect('/');
+
+
+	req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
 }
