@@ -1,24 +1,27 @@
 <header>
-	Page header
+	<div class = "nav-bar">
+		<p> Codial </p>
 
-	<ul>
-		<% if(locals.user) {%>
-			<li>
-				<a href = "/users/profile"> <%= user.name %> </a>
-			</li>
-			<li>
-				<a href = "/users/sign-out">Sign out </a>
-			</li>
+		<ul>
+			<% if(locals.user) {%>
+				<li>
+					<a href = "/users/profile"> <%= user.name %> </a>
+				</li>
+				<li>
+					<a href = "/users/sign-out">Sign out </a>
+				</li>
 
-		<%} else {%>
-			<li>
-				<a href = "/users/sign-in">Sign in </a>
-			</li>
+			<%} else {%>
+				<li class = "sign-in">
+					<a href = "/users/sign-in">Sign in </a>
+				</li>
 
-			<li>
-				<a href = "/users/sign-up">Sign up </a>
-			</li>
+				<li class = "sign-up">
+					<a href = "/users/sign-up">Sign up </a>
+				</li>
 
-		<% } %>
-	</ul>
+			<% } %>
+		</ul>
+
+	</div
 </header>
